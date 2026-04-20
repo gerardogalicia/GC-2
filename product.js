@@ -14,16 +14,39 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
     document.title = window.productData.title;
-    document.getElementById('product-title').textContent = window.productData.title;
-    document.getElementById('product-name').textContent = window.productData.title;
-    document.getElementById('product-image').src = window.productData.image;
-    document.getElementById('product-image').alt = window.productData.title;
-    document.getElementById('product-description').textContent = window.productData.description;
-    document.getElementById('product-price').textContent = window.productData.price;
+    
+    const titleElement = document.getElementById('product-title');
+    if (titleElement) titleElement.textContent = window.productData.title;
+    
+    const nameElement = document.getElementById('product-name');
+    if (nameElement) nameElement.textContent = window.productData.title;
+    
+    const imageElement = document.getElementById('product-image');
+    if (imageElement) {
+        imageElement.src = window.productData.image;
+        imageElement.alt = window.productData.title;
+    }
+    
+    const descElement = document.getElementById('product-description');
+    if (descElement) descElement.textContent = window.productData.description;
+    
+    const priceElement = document.getElementById('product-price');
+    if (priceElement) priceElement.textContent = window.productData.price;
     // Add to cart button logic
     const addToCartBtn = document.getElementById('add-to-cart');
     if (addToCartBtn) {
         addToCartBtn.addEventListener('click', function() {
+            // Validate quantity first
+            const container = document.querySelector('.product-container');
+            if (container) {
+                const qtyInput = container.querySelector('input[type="number"]');
+                const qty = parseInt(qtyInput ? qtyInput.value : 1, 10);
+                if (isNaN(qty) || qty < 1) {
+                    alert('Quantity must be 1 or more.');
+                    return;
+                }
+            }
+
             // Retrieve cart from localStorage or initialize
             // Essentially this saves the stuff. 
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -31,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
             let selectedOption = '';
             let selectedQty = 1;
             // Try to find a select element and quantity input in the product container
-            const container = document.querySelector('.product-container');
             if (container) {
                 const select = container.querySelector('select');
                 if (select) {
