@@ -3,30 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="product-title">Label Accessory - Triforma PH</title>
+    <title id="product-title">Keychain - Triforma PH</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="product-container">
         
         <!-- Product Image Section -->
-        <div class="product-left">
-            <img id="product-image" src="product images/L/label_1.jpg" alt="Label Accessory" style="max-width:300px;">
+        <div class="carousel">
+            <img src="product images/KC/keychain_1.jpg" alt="Keychain" >
+            <img src="product images/KC/keychain_2.jpg" alt="Sample Image 1">
+            <img src="product images/KC/keychain_3.jpg" alt="Sample Image 2">
+            <img src="product images/KC/keychain_4.jpg" alt="Sample Image 3">
         </div>
 
         <!-- Product Details Section -->
         <div class="product-right">
-            <h1 id="product-name">Label Accessory</h1>
-            <p id="product-description">This custom label accessory is designed to help organize cords and stationery items efficiently. It can be attached to cables or cylindrical objects such as containers and tubes for easy identification. The design is lightweight, durable, and customizable, making it suitable for both home and workspace organization.</p>
+            <h1 id="product-name">Keychain</h1>
+            <p id="product-description">A stylish 3D printed keychain. Available in multiple sizes.</p>
             
-            <div class="product-price" id="product-price">850 PHP</div>
+            <div class="product-price" id="product-price">800 PHP</div>
             
             <!-- Size Selector -->
             <label for="product-option">Choose Size:</label>
             <select name="option" id="product-option">
-                <option value="Small (2 inches)">Small (2 inches)</option>
-                <option value="Medium (2.5 inches)">Medium (2.5 inches)</option>
-                <option value="Large (3 inches)">Large (3 inches)</option>
+                <option value="Small (2x3 inches)">Small (2x3 inches)</option>
+                <option value="Medium (3x4 inches)">Medium (3x4 inches)</option>
+                <option value="Large (4x5 inches)">Large (4x5 inches)</option>
             </select>
 
             <!-- Quantity Selector -->
@@ -38,32 +41,13 @@
                 <p id="quantity-error" hidden>Quantity must be 1 or more.</p>
             </div>
 
-            <!-- Color Selector -->
+            <!-- File Upload -->
             <div>
-                <label for="product-color">Choose Color:</label>
-                <select name="color" id="product-color">
-                    <option value="Black">Black</option>
-                    <option value="White">White</option>
-                    <option value="Red">Red</option>
-                    <option value="Blue">Blue</option>
-                    <option value="Green">Green</option>
-                    <option value="Pink">Pink</option>
-                </select>
-            </div>
-
-            <!-- Text Input -->
-            <div>
-                <label for="product-text">Text Input:</label>
-                <input type="text" id="product-text" name="text" placeholder="Enter label text">
+                <label for="product-design">Upload your 3D design:</label>
+                <input type="file" id="product-design" name="design">
             </div>
 
             <button id="add-to-cart">Add to Cart</button>
-
-             <div style="margin-top:20px;">
-                <img class="p_details-img" src="product images/L/label_1.jpg" alt="Sample Image 1" width="200px">
-                <img class="p_details-img" src="product images/L/label_2.jpg" alt="Sample Image 2" width="200px">
-                <img class="p_details-img" src="product images/L/label_3.jpg" alt="Sample Image 3" width="200px">
-            </div>
             
             <!-- Back to Catalogue Link -->
             <div style="margin-top:20px;">
@@ -74,10 +58,10 @@
 
     <script>
     window.productData = {
-        title: "Custom 3D Print - Triforma PH",
-        image: "product images/L/label_1.jpg",
-        description: "This custom label accessory is designed to help organize cords and stationery items efficiently. It can be attached to cables or cylindrical objects such as containers and tubes for easy identification. The design is lightweight, durable, and customizable, making it suitable for both home and workspace organization.",
-        price: "850 PHP"
+        title: "3D Keychain - Triforma PH",
+        image: "product images/KC/keychain_1.jpg",
+        description: "A stylish 3D printed keychain. Available in multiple sizes.",
+        price: "800 PHP"
     };
     </script>
 
@@ -128,8 +112,7 @@
         }, true);
     });
     </script>
-                </section>
-    </body>
+</body>
 <footer>
     <section class="catchline">
         <p>Your one and only <br>3D printing solution <br>in ADMU!</p>
@@ -147,3 +130,5 @@
     </section>
 </footer>
 </html>
+
+

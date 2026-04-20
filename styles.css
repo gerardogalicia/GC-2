@@ -13,8 +13,8 @@
   --text: #1f2937;
   --muted: #6b7280;
   --brand: #7aa2c9;
-  --accent1: #5b4b8a;
-  --accent2: #362274;
+  --accent1: #113377;
+  --accent2: #242fca;
 }
 
 /* BASE */
@@ -34,12 +34,20 @@ header {
   color: white;
   padding: 5px;
   font-family: 'Roboto', sans-serif;
+  width: 100%;
+  font-size: 17px;
 }
 
 .triforma-logo {
   font-weight: 700;
   margin-left: 20px;
   font-family: 'Roboto', sans-serif;
+}
+
+.banner {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 nav{
@@ -57,6 +65,8 @@ footer {
   color: white;
   padding: 30px;
   font-family: 'Roboto', sans-serif;
+  width: 100%;
+  font-size: 17px;
 }
 
 /* LEFT SIDE - catchline + nav */
@@ -120,7 +130,7 @@ nav a.active {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 120px;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -140,14 +150,18 @@ nav a.active {
   padding: 15px 15px;
   text-align: center;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 25px;
   color: white; 
   font-family: 'Roboto', sans-serif;
   font-weight: 600;
+  transition: background-color 0.5s ease, opacity 0.5s, transform 0.5s ease;
 }
 
 #product-start:hover{
-  background-color: var(--accent2); 
+  background-color: var(--accent2);
+  opacity: 0.9;
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
 /* CONTAINER */
@@ -178,12 +192,17 @@ nav a.active {
   padding: 1rem;
   display: flex;
   flex-direction: column;
+  height: 500px;
 }
 
 /* IMAGE */
 .card img {
   width: 100%;
+  height: 300px;
   border-radius: 0.75rem;
+  object-fit: cover;
+  display:block;
+  padding: 3px;
 }
 
 /* META */
@@ -191,7 +210,8 @@ nav a.active {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  margin-top: 0.5rem;
+  margin-top: auto;
+  padding: 5px;
 }
 
 /* TITLE */
@@ -207,8 +227,8 @@ nav a.active {
 
 /* BUTTON */
 .btn {
-  margin-top: 0.5rem;
-  background: var(--accent);
+  margin-top: auto;
+  background: var(--accent1);
   color: white;
   text-decoration: none;
   padding: 0.5rem;
@@ -220,7 +240,7 @@ nav a.active {
 
 /* ONLY BUTTON HOVER */
 .btn:hover {
-  background: #483a73; /* darker purple */
+  background: var(--accent2); 
   transform: translateY(-1px);
 }
 
@@ -253,13 +273,28 @@ nav a.active {
 }
 
 /* LEFT: IMAGE SECTION */
-.product-left {
-  flex: 1;
+.carousel {
+  display: flex;
+  max-width: 500px;
+  background: var(--card);
+  border-radius: 1rem;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  white-space: nowrap; 
+  padding: 1rem;
 }
 
-.product-left img {
+.carousel img {
+  flex: 0 0 auto;
   width: 100%;
+  height: 500px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
   border-radius: 0.75rem;
+  scroll-snap-align: start;
+  display: block;
 }
 
 /* RIGHT: DETAILS SECTION */
