@@ -82,7 +82,7 @@
                 <section>
                     <h2>Final Checkout Details</h2>
                     <p><strong>Total Items:</strong> <span id="total-items">0</span></p>
-                    <p><strong>Total Final Price:</strong> ₱<span id="total-price">0.00</span></p>
+                    <p><strong>Total Final Price:</strong> <span id="total-price">0.00</span></p>
                     <p><strong>Loyalty Points Earned:</strong> <span id="loyalty-points">0</span></p>
                 </section>
 
@@ -182,7 +182,22 @@
             checkoutContainer.innerHTML = html;
 
             totalItemsElement.textContent = totalItems;
-            totalPriceElement.textContent = totalFinalPrice.toFixed(2);
+            
+            // Check for loyalty discount from cart
+            const loyaltyDiscountData = JSON.parse(localStorage.getItem('loyaltyDiscount'));
+            if (loyaltyDiscountData) {
+                const discount = loyaltyDiscountData.discount;
+                const finalTotal = loyaltyDiscountData.finalTotal;
+                totalPriceElement.innerHTML = `<span style="text-decoration:line-through;">₱${totalFinalPrice.toFixed(2)}</span> <span style="color:green;">₱${finalTotal.toFixed(2)}</span>`;
+                // Show discount info
+                const discountInfo = document.createElement('p');
+                discountInfo.id = 'loyalty-discount-info';
+                discountInfo.innerHTML = `<strong style="color:green;">Loyalty Points Discount: -${discount.toFixed(2)}</strong>`;
+                totalPriceElement.parentNode.appendChild(discountInfo);
+            } else {
+                totalPriceElement.textContent = totalFinalPrice.toFixed(2);
+            }
+            
             loyaltyPointsElement.textContent = Math.ceil(totalFinalPrice / 1000);
             placeOrderButton.disabled = false;
         }
@@ -259,6 +274,7 @@
 
                 localStorage.setItem('lastOrder', JSON.stringify(orderData));
                 localStorage.removeItem('cart');
+                localStorage.removeItem('loyaltyDiscount');
 
                 confirmationMessage.innerHTML = `
                     <h2>Order Confirmed</h2>

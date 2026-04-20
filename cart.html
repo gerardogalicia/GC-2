@@ -63,36 +63,21 @@
                 const loyaltyPoints = Math.ceil(totalFinalPrice / 1000);
                 html += `<div style="margin-top:10px;font-size:1.1em;"><strong>Loyalty Points Earned: ${loyaltyPoints}</strong></div>`;
                 
-                // Loyalty points discount section
-                html += `<div style="margin-top:20px;padding:15px;background:#f9f9f9;border-radius:5px;">
-                    <strong>Use Loyalty Points as Discount</strong><br>
-                    <span style="font-size:0.9em;">1 point = ₱1 discount</span><br>
-                    <input type="number" id="pointsToUse" min="0" max="${loyaltyPoints}" value="0" style="margin:10px 0;padding:5px;width:80px;">
-                    <button id="applyPointsBtn" style="padding:5px 10px;cursor:pointer;">Apply Discount</button>
-                </div>`;
+                // Auto-apply loyalty points discount
+                const discount = loyaltyPoints;
+                const finalTotal = totalFinalPrice - discount;
                 
-                html += `<div id="discountSection" style="margin-top:15px;font-size:1.1em;color:green;"></div>`;
-                html += `<div id="finalTotalSection" style="margin-top:10px;font-size:1.3em;"><strong>Final Total: ₱${totalFinalPrice.toFixed(2)}</strong></div>`;
+                html += `<div style="margin-top:15px;font-size:1.1em;color:green;"><strong>Loyalty Points Discount Applied: -₱${discount.toFixed(2)}</strong></div>`;
+                html += `<div id="finalTotalSection" style="margin-top:10px;font-size:1.3em;"><strong>Final Total: ₱${finalTotal.toFixed(2)}</strong></div>`;
+                
+                // Save discount to localStorage for checkout page
+                localStorage.setItem('loyaltyDiscount', JSON.stringify({
+                    discount: discount,
+                    finalTotal: finalTotal,
+                    pointsUsed: loyaltyPoints
+                }));
                 
                 cartContainer.innerHTML = html;
-                
-                // Apply points discount functionality
-                const applyBtn = document.getElementById('applyPointsBtn');
-                const pointsInput = document.getElementById('pointsToUse');
-                const discountSection = document.getElementById('discountSection');
-                const finalTotalSection = document.getElementById('finalTotalSection');
-                
-                applyBtn.addEventListener('click', function() {
-                    const pointsToUse = parseInt(pointsInput.value) || 0;
-                    if (pointsToUse > loyaltyPoints) {
-                        alert('You cannot use more points than you have!');
-                        return;
-                    }
-                    const discount = pointsToUse;
-                    const finalTotal = totalFinalPrice - discount;
-                    discountSection.innerHTML = `<strong>Discount Applied: -₱${discount.toFixed(2)}</strong>`;
-                    finalTotalSection.innerHTML = `<strong>Final Total: ₱${finalTotal.toFixed(2)}</strong>`;
-                });
 
                 
                 // Add event listeners for remove buttons
