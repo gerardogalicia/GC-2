@@ -3,30 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="product-title">Keychain - Triforma PH</title>
+    <title id="product-title">Jewelry - Triforma PH</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="product-container">
         
         <!-- Product Image Section -->
-        <div class="product-left">
-            <img id="product-image" src="product images/KC/keychain_1.jpg" alt="Keychain" style="max-width:300px;">
+        <div class="carousel">
+            <img src="product images/J/jewelry_1.jpg" alt="Jewelry" >
+            <img src="product images/J/jewelry_2.jpg" alt="Sample Image 1">
+            <img src="product images/J/jewelry_3.jpg" alt="Sample Image 2">
         </div>
 
         <!-- Product Details Section -->
         <div class="product-right">
-            <h1 id="product-name">Keychain</h1>
-            <p id="product-description">A stylish 3D printed keychain. Available in multiple sizes.</p>
+            <h1 id="product-name">Jewelry</h1>
+            <p id="product-description">Beautiful 3D printed jewelry. Choose your favorite type.</p>
             
-            <div class="product-price" id="product-price">800 PHP</div>
+            <div class="product-price" id="product-price">1500 PHP</div>
             
-            <!-- Size Selector -->
-            <label for="product-option">Choose Size:</label>
+            <!-- Variation Selector -->
+            <label for="product-option">Choose Variation:</label>
             <select name="option" id="product-option">
-                <option value="Small (2x3 inches)">Small (2x3 inches)</option>
-                <option value="Medium (3x4 inches)">Medium (3x4 inches)</option>
-                <option value="Large (4x5 inches)">Large (4x5 inches)</option>
+                <option value="Earrings">Earrings</option>
+                <option value="Necklace">Necklace</option>
+                <option value="Bracelet">Bracelet</option>
+                <option value="Ring">Ring</option>
             </select>
 
             <!-- Quantity Selector -->
@@ -38,20 +41,7 @@
                 <p id="quantity-error" hidden>Quantity must be 1 or more.</p>
             </div>
 
-            <!-- File Upload -->
-            <div>
-                <label for="product-design">Upload your 3D design:</label>
-                <input type="file" id="product-design" name="design">
-            </div>
-
             <button id="add-to-cart">Add to Cart</button>
-
-
-             <div style="margin-top:20px;">
-                <img class="p_details-img" src="product images/KC/keychain_1.jpg" alt="Sample Image 1" width="200px">
-                <img class="p_details-img" src="product images/KC/keychain_2.jpg" alt="Sample Image 2" width="200px">
-                <img class="p_details-img" src="product images/KC/keychain_3.jpg" alt="Sample Image 3" width="200px">
-            </div>
             
             <!-- Back to Catalogue Link -->
             <div style="margin-top:20px;">
@@ -62,10 +52,10 @@
 
     <script>
     window.productData = {
-        title: "3D Keychain - Triforma PH",
-        image: "product images/KC/keychain_1.jpg",
-        description: "A stylish 3D printed keychain. Available in multiple sizes.",
-        price: "800 PHP"
+        title: "3D Jewelry - Triforma PH",
+        image: "product images/J/jewelry_1.jpg",
+        description: "Beautiful 3D printed jewelry. Choose your favorite type.",
+        price: "1500 PHP"
     };
     </script>
 
@@ -116,7 +106,21 @@
         }, true);
     });
     </script>
-</body>
+
+                        <!-- File upload -->
+                         <div>
+                        <label for="design">Upload your 3D design:</label>
+                        <input type="file" id="j_design" name="design">
+                        </div>
+        </div>
+                </section>
+            <p>Custom 3D printed jewelry designed with your preferred style, name, or pattern. Lightweight and unique, perfect for personal use or as a meaningful gift.</p>
+        </div>
+    </body>
+
+
+
+    
 <footer>
     <section class="catchline">
         <p>Your one and only <br>3D printing solution <br>in ADMU!</p>
@@ -134,5 +138,3 @@
     </section>
 </footer>
 </html>
-
-
