@@ -4,7 +4,7 @@
 * {
   box-sizing: border-box;
 }
-
+/* Color Scheme (Consistency across site) */
 /* Color Scheme (Consistency across site) */
 :root {
   --bg: #F1F5F9;        /* Page background (soft light gray) */
