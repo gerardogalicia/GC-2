@@ -7,22 +7,40 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+    <header>
+    <h3 class="triforma-logo">Triforma</h3>
+    <nav class="nav-header">
+        <a href="index.html">Home</a>
+        <a href="catalogue.html">Products</a>
+        <a href="cart.html">Cart</a>
+    </nav>
+</header>
+
     <div class="product-container">
         
-        <!-- Product Image Section -->
-        <div class="carousel">
-            <img src="product images/KC/keychain_1.jpg" alt="Keychain" >
-            <img src="product images/KC/keychain_2.jpg" alt="Sample Image 1">
-            <img src="product images/KC/keychain_3.jpg" alt="Sample Image 2">
-            <img src="product images/KC/keychain_4.jpg" alt="Sample Image 3">
+    <!-- Product Image Section -->
+    <div class="product-gallery">
+        <!-- MAIN IMAGE -->
+        <div class="main-image">
+            <img id="main-product-image" src="product images/KC/keychain_1.jpg" alt="Product">
         </div>
+
+        <!-- THUMBNAILS -->
+        <div class="thumbnail-row">
+            <img class="thumbnail active" src="product images/KC/keychain_1.jpg">
+            <img class="thumbnail" src="product images/KC/keychain_2.jpg">
+            <img class="thumbnail" src="product images/KC/keychain_3.jpg">
+            <img class="thumbnail" src="product images/KC/keychain_4.jpg">
+        </div>
+    </div> 
 
         <!-- Product Details Section -->
         <div class="product-right">
             <h1 id="product-name">Keychain</h1>
             <p id="product-description">A stylish 3D printed keychain. Available in multiple sizes.</p>
             
-            <div class="product-price" id="product-price">800 PHP</div>
+            <div class="product-price" id="product-price"> 800 PHP</div>
             
             <!-- Size Selector -->
             <label for="product-option">Choose Size:</label>
@@ -58,7 +76,7 @@
 
     <script>
     window.productData = {
-        title: "3D Keychain - Triforma PH",
+        title: "Keychain",
         image: "product images/KC/keychain_1.jpg",
         description: "A stylish 3D printed keychain. Available in multiple sizes.",
         price: "800 PHP"
@@ -112,6 +130,23 @@
         }, true);
     });
     </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const mainImage = document.getElementById("main-product-image");
+    const thumbnails = document.querySelectorAll(".thumbnail");
+
+    thumbnails.forEach((thumb) => {
+        thumb.addEventListener("click", () => {
+            // Change main image
+            mainImage.src = thumb.src;
+
+            // Update active state
+            thumbnails.forEach(t => t.classList.remove("active"));
+            thumb.classList.add("active");
+        });
+    });
+});
+</script>
 </body>
 <footer>
     <section class="catchline">
@@ -120,7 +155,6 @@
             <a href=index.html>Home</a>
             <a href=catalogue.html>Products</a>
             <a href=cart.html>Cart</a>
-            <a href=checkout.html>Checkout</a>
         </nav>
     </section>
     <section class="find-us">

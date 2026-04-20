@@ -7,14 +7,32 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+    <header>
+    <h3 class="triforma-logo">Triforma</h3>
+    <nav class="nav-header">
+        <a href="index.html">Home</a>
+        <a href="catalogue.html">Products</a>
+        <a href="cart.html">Cart</a>
+    </nav>
+</header>
+
     <div class="product-container">
-        
-        <!-- Product Image Section -->
-        <div class="carousel">
-            <img src="product images/L/label_1.jpg" alt="Label Accessory" >
-            <img src="product images/L/label_2.jpg" alt="Sample Image 1">
-            <img src="product images/L/label_3.jpg" alt="Sample Image 2">
+       
+         <!-- Product Image Section -->
+    <div class="product-gallery">
+        <!-- MAIN IMAGE -->
+        <div class="main-image">
+            <img id="main-product-image" src="product images/L/label_1.jpg" alt="Label Accessory">
         </div>
+
+        <!-- THUMBNAILS -->
+        <div class="thumbnail-row">
+            <img class="thumbnail active" src="product images/L/label_1.jpg" alt="Label Accessory">
+            <img class="thumbnail" src="product images/L/label_2.jpg" alt="Sample Image 1">
+            <img class="thumbnail" src=product images/L/label_3.jpg" alt="Sample Image 2">
+        </div>
+    </div> 
 
         <!-- Product Details Section -->
         <div class="product-right">
@@ -55,8 +73,14 @@
 
             <!-- Text Input -->
             <div>
-                <label for="product-text">Text Input:</label>
-                <input type="text" id="product-text" name="text" placeholder="Enter label text">
+                <label for="product-text">Name:</label>
+                <input type="text" id="product-text" name="text" placeholder="Name">
+            </div>
+
+            <!-- File Upload -->
+            <div>
+                <label for="product-design">Upload your 3D design:</label>
+                <input type="file" id="product-design" name="design">
             </div>
 
             <button id="add-to-cart">Add to Cart</button>
@@ -70,7 +94,7 @@
 
     <script>
     window.productData = {
-        title: "Custom 3D Print - Triforma PH",
+        title: "Label Accessory",
         image: "product images/L/label_1.jpg",
         description: "This custom label accessory is designed to help organize cords and stationery items efficiently. It can be attached to cables or cylindrical objects such as containers and tubes for easy identification. The design is lightweight, durable, and customizable, making it suitable for both home and workspace organization.",
         price: "850 PHP"
@@ -124,6 +148,23 @@
         }, true);
     });
     </script>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const mainImage = document.getElementById("main-product-image");
+    const thumbnails = document.querySelectorAll(".thumbnail");
+
+    thumbnails.forEach((thumb) => {
+        thumb.addEventListener("click", () => {
+            // Change main image
+            mainImage.src = thumb.src;
+
+            // Update active state
+            thumbnails.forEach(t => t.classList.remove("active"));
+            thumb.classList.add("active");
+        });
+    });
+});
+</script>
                 </section>
     </body>
 <footer>
@@ -133,7 +174,6 @@
             <a href=index.html>Home</a>
             <a href=catalogue.html>Products</a>
             <a href=cart.html>Cart</a>
-            <a href=checkout.html>Checkout</a>
         </nav>
     </section>
     <section class="find-us">
