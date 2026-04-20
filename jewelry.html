@@ -7,21 +7,39 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+    <header>
+    <h3 class="triforma-logo">Triforma</h3>
+    <nav class="nav-header">
+        <a href="index.html">Home</a>
+        <a href="catalogue.html">Products</a>
+        <a href="cart.html">Cart</a>
+    </nav>
+</header>
+
     <div class="product-container">
         
-        <!-- Product Image Section -->
-        <div class="carousel">
-            <img src="product images/J/jewelry_1.jpg" alt="Jewelry" >
-            <img src="product images/J/jewelry_2.jpg" alt="Sample Image 1">
-            <img src="product images/J/jewelry_3.jpg" alt="Sample Image 2">
+<!-- Product Image Section -->
+    <div class="product-gallery">
+        <!-- MAIN IMAGE -->
+        <div class="main-image">
+            <img id="main-product-image" src="product images/J/jewelry_1.jpg" alt="Jewelry">
         </div>
+
+        <!-- THUMBNAILS -->
+        <div class="thumbnail-row">
+            <img class="thumbnail active" src="product images/J/jewelry_1.jpg" alt="Jewelry">
+            <img class="thumbnail" src="product images/J/jewelry_2.jpg" alt="Sample Image 1">
+            <img class="thumbnail" src="product images/J/jewelry_3.jpg" alt="Sample Image 2">
+        </div>
+    </div> 
 
         <!-- Product Details Section -->
         <div class="product-right">
             <h1 id="product-name">Jewelry</h1>
             <p id="product-description">Beautiful 3D printed jewelry. Choose your favorite type.</p>
             
-            <div class="product-price" id="product-price">1500 PHP</div>
+            <div class="product-price" id="product-price">PHP 1500</div>
             
             <!-- Variation Selector -->
             <label for="product-option">Choose Variation:</label>
@@ -41,6 +59,12 @@
                 <p id="quantity-error" hidden>Quantity must be 1 or more.</p>
             </div>
 
+            <!-- File Upload -->
+            <div>
+                <label for="product-design">Upload your 3D design:</label>
+                <input type="file" id="product-design" name="design">
+            </div>
+
             <button id="add-to-cart">Add to Cart</button>
             
             <!-- Back to Catalogue Link -->
@@ -52,7 +76,7 @@
 
     <script>
     window.productData = {
-        title: "3D Jewelry - Triforma PH",
+        title: "Jewelry",
         image: "product images/J/jewelry_1.jpg",
         description: "Beautiful 3D printed jewelry. Choose your favorite type.",
         price: "1500 PHP"
@@ -106,15 +130,24 @@
         }, true);
     });
     </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const mainImage = document.getElementById("main-product-image");
+    const thumbnails = document.querySelectorAll(".thumbnail");
 
-                        <!-- File upload -->
-                         <div>
-                        <label for="design">Upload your 3D design:</label>
-                        <input type="file" id="j_design" name="design">
-                        </div>
-        </div>
-                </section>
-            <p>Custom 3D printed jewelry designed with your preferred style, name, or pattern. Lightweight and unique, perfect for personal use or as a meaningful gift.</p>
+    thumbnails.forEach((thumb) => {
+        thumb.addEventListener("click", () => {
+            // Change main image
+            mainImage.src = thumb.src;
+
+            // Update active state
+            thumbnails.forEach(t => t.classList.remove("active"));
+            thumb.classList.add("active");
+        });
+    });
+});
+</script>
+               
         </div>
     </body>
 
@@ -128,7 +161,6 @@
             <a href=index.html>Home</a>
             <a href=catalogue.html>Products</a>
             <a href=cart.html>Cart</a>
-            <a href=checkout.html>Checkout</a>
         </nav>
     </section>
     <section class="find-us">
