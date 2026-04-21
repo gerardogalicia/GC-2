@@ -1,0 +1,425 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* RESET */
+* {
+  box-sizing: border-box;
+}
+/* Color Scheme (Consistency across site) */
+/* Color Scheme (Consistency across site) */
+:root {
+  --bg: #F1F5F9;        /* Page background (soft light gray) */
+  --card: #FFFFFF;      /* Cards / containers */
+  --surface: #E2E8F0;   /* Inputs / inner sections */
+  --text: #012640;      /* Main text (your navy) */
+  --muted: #64748B;     /* Secondary text */
+  --accent1: #07BCCA;   /* Primary accent */
+  --accent2: #0597A6;   /* Hover */
+  --divider: rgba(0,0,0,0.08); /* Subtle border */
+}
+
+/* Base Styles */
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: 'Roboto', sans-serif;
+}
+
+button {
+  font-weight: 500;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--surface); /* Light background for header */
+  padding: 12px 30px;
+  font-family: 'Roboto', sans-serif;
+  width: 100%;
+  font-size: 17px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* LOGO */
+.triforma-logo {
+  font-weight: 700;
+  margin: 0;
+  color: var(--text);
+}
+
+/* PAGE TITLES */
+
+.page-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px; /* Adjust padding for vertical spacing */
+  text-align: center; /* Ensures text is centered */
+}
+
+.page-title h1 {
+  font-size: 2.5rem; /* Larger font for the Checkout title */
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.page-title h3 {
+  font-size: 1.5rem; /* Smaller font for the description */
+  font-weight: 400;
+  color: var(--muted); /* Muted color for the subtitle */
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
+/* NAVIGATION */
+nav {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+nav a:hover {
+  color: var(--accent1);
+  opacity: 1;
+}
+
+nav a.active {
+  color: var(--text);
+  font-weight: 700;
+  opacity: 1;
+}
+
+/* MAIN CONTAINER FOR CHECKOUT PAGE */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+/* ORDER SUMMARY SECTION */
+.order-summary {
+  flex: 1 1 45%;  /* This takes 45% of the width */
+  background: var(--card);
+  border-radius: 1rem;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.order-summary ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* COMPACT PRODUCT LAYOUT (IMAGE ON LEFT, INFO ON RIGHT) */
+.order-summary article {
+  display: flex;
+  gap: 15px;
+  padding: 10px;
+  background: var(--surface);
+  border-radius: 0.75rem;
+}
+
+.order-summary img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.order-summary .product-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+  flex: 1;
+}
+
+.order-summary .product-info strong {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+
+.order-summary .product-info .price {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent1);
+  margin-top: 5px;
+}
+
+.order-summary .product-info .quantity {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.order-summary .product-info .quantity span {
+  font-size: 1rem;
+}
+
+.order-summary .product-info .quantity button {
+  background: var(--accent1);
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  width: 30px;
+  height: 30px;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.order-summary .product-info .quantity button:hover {
+  background: var(--accent2);
+}
+
+.order-summary .product-info .quantity input {
+  width: 50px;
+  text-align: center;
+  padding: 5px;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ddd;
+}
+
+/* CUSTOMER INFORMATION SECTION */
+.customer-information {
+  flex: 1 1 45%;  /* This takes 45% of the width */
+  background: var(--card);
+  border-radius: 1rem;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* FORM FIELDS */
+fieldset {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  border-radius: 1rem;
+  margin-bottom: 15px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 0.5rem;
+  border: 1px solid #ddd;
+  background: var(--surface);
+  font-size: 14px;
+  color: var(--text);
+}
+
+/* PAYMENT METHOD */
+.payment-method {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Adjusts the gap between each radio button */
+  margin-bottom: 20px;
+}
+
+/* Each Payment Option (Radio button + Label) */
+.payment-method div {
+  display: flex;
+  align-items: center;  /* Ensures that the radio button and label are aligned */
+  gap: 10px;  /* Adds space between the radio button and label */
+}
+
+/* Label Styling */
+.payment-method label {
+  font-size: 1rem;
+  color: var(--text);
+  cursor: pointer; /* Makes it clickable */
+}
+
+/* Radio Button Styling */
+.payment-method input[type="radio"] {
+  width: auto; /* Ensures the radio buttons are not stretched */
+  height: auto; /* Ensures the radio buttons are not stretched */
+  margin: 0; /* Removes the default margin for radio buttons */
+}
+
+/* PLACE ORDER BUTTON */
+#place-order {
+  width: 100%;
+  padding: 15px;
+  background: var(--accent1);
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+#place-order:hover {
+  background-color: var(--accent2);
+  transform: scale(1.05);
+}
+
+/* SPACING AND LAYOUT ADJUSTMENTS */
+.order-summary article {
+  padding: 10px 15px;
+}
+
+.order-summary .product-info .price,
+.order-summary .product-info strong {
+  margin-bottom: 8px;
+}
+
+.order-summary .product-info {
+  gap: 5px;
+}
+
+/* ORDER SUMMARY */
+.order-summary {
+  flex: 1 1 45%;
+  background: var(--card);
+  border-radius: 1rem;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+/* NEED TO CHANGE SOMETHING? */
+.need-to-change {
+  margin-top: 5px; /* Adds some spacing from the rest of the order summary */
+  display: flex;
+  justify-content: center; /* Centers the content horizontally */
+  gap: 20px; /* Adds space between the two buttons */
+  flex-direction: column;
+  align-items: center;
+}
+
+.need-to-change p {
+  font-size: 1.1rem;
+  color: var(--text);
+  font-weight: 700;
+  margin-bottom: 0.5px; /* Space between text and buttons */
+}
+
+/* Style for the buttons in the "Need to change something?" section */
+.need-to-change button {
+  background: var(--accent1);
+  color: white;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 0.75rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.need-to-change button:hover {
+  background: var(--accent2);
+  transform: scale(1.05); /* Makes the button slightly larger */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Adds shadow to make it pop */
+}
+
+.need-to-change button:active {
+  transform: scale(0.98); /* Slightly reduce size to mimic a click */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Smaller shadow to simulate click effect */
+}
+
+/* RESPONSIVENESS */
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+    gap: 20px;
+    padding: 15px;
+  }
+
+  .order-summary,
+  .customer-information {
+    flex: 1 1 100%;
+  }
+
+  .order-summary article {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .order-summary img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .order-summary .product-info {
+    align-items: flex-start;
+  }
+}
+
+/* FINAL CHECKOUT DETAILS */
+#finalTotalSection {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 1rem;
+  font-size: 1.3em;
+  font-weight: 700;
+  margin-top: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* LOYALTY POINTS SECTION */
+#loyalty-points {
+  background-color: #f3f4f6;
+  padding: 15px;
+  border-radius: 1rem;
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #4CAF50;
+  margin-top: 10px;
+}
+
+/* ASIDE LINKS STYLING (FOR CART AND SHOPPING) */
+.aside-links a {
+  padding: 10px 20px;
+  background: var(--accent1);
+  color: white;
+  text-decoration: none;
+  border-radius: 0.6rem;
+  font-weight: 600;
+  text-align: center;
+  transition: background 0.2s, transform 0.1s ease;
+}
+
+.aside-links a:hover {
+  background: var(--accent2);
+}

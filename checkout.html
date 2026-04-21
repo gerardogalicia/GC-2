@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - Triforma PH</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="checkout.css">
 </head>
 <body>
     <header>
@@ -24,6 +24,20 @@
         <section class="order-summary">
             <h2>Order Summary</h2>
             <div id="checkout-items"></div>
+             <aside class="need-to-change">
+                <p>Need to change something?</p>
+                    <div>
+                    <!-- "Go back to Cart" link -->
+                    <a href="cart.html">
+                        <button>Go back to Cart</button>
+                    </a>
+
+                    <!-- "Continue Shopping" link -->
+                    <a href="catalogue.html">
+                        <button>Continue Shopping</button>
+                    </a>
+                </div>
+            </aside>
         </section>
 
         <section class="customer-information">
@@ -63,18 +77,21 @@
 
                 <br>
 
-                <fieldset>
-                    <legend>Payment Method</legend>
-
-                    <input type="radio" id="gcash" name="payment-method" value="GCash" required>
-                    <label for="gcash">GCash</label><br>
-
-                    <input type="radio" id="card" name="payment-method" value="Credit/Debit Card">
-                    <label for="card">Credit/Debit Card</label><br>
-
-                    <input type="radio" id="cod" name="payment-method" value="Cash on Delivery">
-                    <label for="cod">Cash on Delivery</label>
-                </fieldset>
+                <div class="payment-method">
+                    <label for="payment-method">Payment Method</label>
+                    <div>
+                        <input type="radio" id="gcash" name="payment-method" value="GCash">
+                        <label for="gcash">GCash</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="credit-card" name="payment-method" value="Credit/Debit Card">
+                        <label for="credit-card">Credit/Debit Card</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="cod" name="payment-method" value="Cash on Delivery">
+                        <label for="cod">Cash on Delivery</label>
+                    </div>
+                </div>
 
                 <br>
 
@@ -88,14 +105,6 @@
             </form>
         </section>
 
-        <aside>
-            <h2>Need to change something?</h2>
-            <div class="aside-links">
-                <a href="cart.html">Go back to Cart</a>
-                <a href="catalogue.html">Continue Shopping</a>
-            </div>
-        </aside>
-
         <section id="confirmation-message"></section>
     </main>
 
@@ -106,7 +115,6 @@
             <a href=index.html>Home</a>
             <a href=catalogue.html>Products</a>
             <a href=cart.html>Cart</a>
-            <a class="active" href=checkout.html>Checkout</a>
         </nav>
     </section>
     <section class="find-us">
@@ -166,10 +174,8 @@
                         <article>
                             <img src="${item.image}" alt="${item.title}" width="120">
                             <h3>${item.title}</h3>
-                            <p>${item.description}</p>
-                            <p><strong>Base Price:</strong> ${item.price}</p>
-                            <p><strong>Selected Option:</strong> ${item.option ? item.option : 'Standard'}</p>
-                            <p><strong>Quantity:</strong> ${quantity}</p>
+                            <p><strong>Option:</strong> ${item.option ? item.option : 'Standard'}</p>
+                            <p><strong>Qty:</strong> ${quantity}</p>
                             <p><strong>Final Price:</strong> ₱${finalPrice.toFixed(2)}</p>
                         </article>
                     </li>
