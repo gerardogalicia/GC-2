@@ -8,23 +8,31 @@
 </head>
 <body>
 
-       <header>
-            <h3 class="triforma-logo">Triforma</h3>
-                <nav class="nav-header">
-                    <a href=index.html>Home</a>
-                    <a href=catalogue.html>Products</a>
-                    <a href=cart.html>Cart</a>
-                </nav>
-        </header>
+    <header>
+    <h3 class="triforma-logo">Triforma</h3>
+    <nav class="nav-header">
+        <a href="index.html">Home</a>
+        <a href="catalogue.html">Products</a>
+        <a href="cart.html">Cart</a>
+    </nav>
+</header>
 
     <div class="product-container">
-        
-        <!-- Product Image Section -->
-        <div class="carousel">
-            <img src="product images/PT/pt_1.jpg" alt="Pet Tags" >
-            <img src="product images/PT/pt_2.jpg" alt="Sample Image 1">
-            <img src="product images/PT/pt_3.jpg" alt="Sample Image 2">
+    
+<!-- Product Image Section -->
+    <div class="product-gallery">
+        <!-- MAIN IMAGE -->
+        <div class="main-image">
+            <img id="main-product-image" src="product images/PT/pt_1.jpg" alt="Pet Tags" >
         </div>
+
+        <!-- THUMBNAILS -->
+        <div class="thumbnail-row">
+            <img class="thumbnail active" src="product images/PT/pt_1.jpg" alt="Pet Tags" >
+            <img class="thumbnail" src="product images/PT/pt_2.jpg" alt="Sample Image 1">
+            <img class="thumbnail" src="product images/PT/pt_3.jpg" alt="Sample Image 2">
+        </div>
+    </div> 
 
         <!-- Product Details Section -->
         <div class="product-right">
@@ -65,9 +73,21 @@
 
             <!-- Text Input -->
             <div>
-                <label for="product-text">Text Input:</label>
-                <input type="text" id="product-text" name="text" placeholder="Enter pet's name and contact info">
+                <label for="product-text">Pet's Name:</label>
+                <input type="text" id="product-text" name="text" placeholder="Name">
             </div>
+
+            <!-- Contact Input -->
+            <div>
+                <label for="product-text">Owner's Contact No.:</label>
+                <input type="text" id="product-text" name="text" placeholder="Contact No.">
+            </div>
+
+            <!-- File Upload -->
+            <div>
+                <label for="product-design">Upload your 3D design:</label>
+                <input type="file" id="product-design" name="design">
+            </div>  
 
             <button id="add-to-cart">Add to Cart</button>
             
@@ -81,7 +101,7 @@
     </div>
     <script>
     window.productData = {
-        title: "3D Pet Tags",
+        title: "Pet Tags",
         image: "product images/PT/pt_1.jpg",
         description: "Durable 3D printed pet tags. Available in multiple sizes.",
         price: "1200 PHP"
@@ -133,5 +153,39 @@
         }, true);
     });
     </script>
+
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const mainImage = document.getElementById("main-product-image");
+    const thumbnails = document.querySelectorAll(".thumbnail");
+
+    thumbnails.forEach((thumb) => {
+        thumb.addEventListener("click", () => {
+            // Change main image
+            mainImage.src = thumb.src;
+
+            // Update active state
+            thumbnails.forEach(t => t.classList.remove("active"));
+            thumb.classList.add("active");
+        });
+    });
+});
+</script>
+
+<footer>
+    <section class="catchline">
+        <p>Your one and only <br>3D printing solution <br>in ADMU!</p>
+        <nav class="nav-footer">
+            <a href=index.html>Home</a>
+            <a href=catalogue.html>Products</a>
+            <a href=cart.html>Cart</a>
+        </nav>
+    </section>
+    <section class="find-us">
+        <p>Located at Ateneo de Manila University, <br> Katipunan Ave, Loyola Heights, Quezon City, 1108 Metro Manila</p>
+        <p>Contact us through 3dprintADMU@xmail.com</p>
+        <p>&copy;2026 Triforma PH</p>
+    </section>
+</footer>
 </body>
 </html>
