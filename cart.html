@@ -11,14 +11,22 @@
                 <nav class="nav-header">
                     <a href=index.html>Home</a>
                     <a href=catalogue.html>Products</a>
-                    <a class="active" href=cart.html>Cart</a>
+                    <a class="active" href="cart.html">Cart</a>
                 </nav>
         </header>
         <section class="page-title">
             <h1>Your Cart</h1>
             <!-- Cart items will go here -->
               <!-- im ngl i dont understand this -->
-            <div id="cart-items"></div>
+            <div class="cart-container">
+                <div id="cart-items" class="cart-items"></div>
+
+                <aside class="cart-summary">
+                 <h2>Order Summary</h2>
+                 <div id="cart-summary-content"></div>
+                 <a href="checkout.html" class="checkout-btn">Proceed to Checkout</a>
+                </aside>
+            </div>
         </section>
 
         <script>
@@ -41,20 +49,30 @@
                     }
                     totalFinalPrice += parseFloat(finalPrice);
                     html += `
-                    <li style="margin-bottom:20px;border-bottom:1px solid #ccc;padding-bottom:10px;">
-                        <img src="${item.image}" alt="${item.title}" style="width:100px;vertical-align:middle;margin-right:10px;">
-                        <strong>${item.title}</strong><br>
-                        <span>${item.price}</span><br>
-                        <span>${item.description}</span><br>
-                        <span><em>${item.option ? 'Selected: ' + item.option : ''}</em></span><br>
-                        <span><strong>Quantity:</strong></span>
-                        <button class="decrease-qty" data-idx="${idx}">-</button>
-                        <span>${item.quantity ? item.quantity : 1}</span>
-                        <button class="increase-qty" data-idx="${idx}">+</button><br>
-                        <span><strong>Final Price:</strong> ₱${finalPrice}</span><br>
-                        <button class="remove-from-cart" data-idx="${idx}">Remove</button>
-                    </li>
-                    `;
+<div class="cart-item">
+  <img src="${item.image}" alt="${item.title}">
+
+  <div class="cart-details">
+    <div class="cart-title">${item.title}</div>
+    <div class="cart-price">${item.price}</div>
+    <div class="cart-price">${item.option ? item.option : ''}</div>
+  </div>
+
+  <div class="cart-actions">
+    <button class="decrease-qty" data-idx="${idx}">-</button>
+    <span>${item.quantity ? item.quantity : 1}</span>
+    <button class="increase-qty" data-idx="${idx}">+</button>
+  </div>
+
+  <div>
+    <strong>₱${parseFloat(finalPrice).toFixed(2)}</strong>
+    <br>
+    <button class="remove-from-cart remove-btn" data-idx="${idx}">Remove</button>
+  </div>
+</div>
+`;
+
+                    
                 });
                 html += '</ul>';
                 html += `<div style="margin-top:20px;font-size:1.2em;"><strong>Total Final Price: ₱${totalFinalPrice.toFixed(2)}</strong></div>`;
@@ -64,11 +82,25 @@
                 
                 // Auto-apply loyalty points discount
                 const discount = loyaltyPoints;
-                const finalTotal = totalFinalPrice - discount;
-                
-                html += `<div style="margin-top:15px;font-size:1.1em;color:green;"><strong>Loyalty Points Discount Applied: -₱${discount.toFixed(2)}</strong></div>`;
-                html += `<div id="finalTotalSection" style="margin-top:10px;font-size:1.3em;"><strong>Final Total: ₱${finalTotal.toFixed(2)}</strong></div>`;
-                
+const finalTotal = totalFinalPrice - discount;
+
+document.getElementById("cart-summary-content").innerHTML = `
+  <div class="summary-line">
+    <span>Subtotal</span>
+    <span>₱${totalFinalPrice.toFixed(2)}</span>
+  </div>
+
+  <div class="summary-line">
+    <span>Loyalty Discount</span>
+    <span>-₱${discount.toFixed(2)}</span>
+  </div>
+
+  <div class="summary-total">
+    <span>Total</span>
+    <span>₱${finalTotal.toFixed(2)}</span>
+  </div>
+`;
+
                 // Save discount to localStorage for checkout page
                 localStorage.setItem('loyaltyDiscount', JSON.stringify({
                     discount: discount,
@@ -124,14 +156,30 @@
         document.addEventListener('DOMContentLoaded', renderCartItems);
         </script>
 
-            <br>
-
-            <a href="catalogue.html">Continue Shopping</a>
-            <br><br>
-            <a href="checkout.html">Proceed to Checkout</a>
+<div class="cart-footer">
+  <a href="catalogue.html" class="secondary-btn">← Continue Shopping</a>
+</div>
 
             <script src="product.js"></script>
 
+<script>
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const countElement = document.getElementById('cart-count');
+
+  if (!countElement) return;
+
+  let total = 0;
+
+  cart.forEach(item => {
+    total += item.quantity ? parseInt(item.quantity) : 1;
+  });
+
+  countElement.textContent = total;
+}
+
+document.addEventListener('DOMContentLoaded', updateCartCount);
+</script>
 </body>
 <footer>
     <section class="catchline">
@@ -139,7 +187,8 @@
         <nav class="nav-footer">
             <a href=index.html>Home</a>
             <a href=catalogue.html>Products</a>
-            <a class="active" href=cart.html>Cart</a>
+
+            <a href=cart.html>Cart</a>
         </nav>
     </section>
     <section class="find-us">
