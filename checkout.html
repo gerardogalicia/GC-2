@@ -98,7 +98,8 @@
                 <section>
                     <h2>Final Checkout Details</h2>
                     <p><strong>Total Items:</strong> <span id="total-items">0</span></p>
-                    <p><strong>Total Final Price:</strong> ₱<span id="total-price">0.00</span></p>
+                    <p><strong>Total Final Price:</strong> <span id="total-price">0.00</span></p>
+                    <p><strong>Loyalty Points Earned:</strong> <span id="loyalty-points">0</span></p>
                 </section>
 
                 <button type="submit" id="place-order">Place Order</button>
@@ -192,22 +193,17 @@
             if (loyaltyDiscountData) {
                 const discount = loyaltyDiscountData.discount;
                 const finalTotal = loyaltyDiscountData.finalTotal;
-                totalPriceElement.innerHTML = `<span style="text-decoration:line-through;">${totalFinalPrice.toFixed(2)}</span> <span style="color:green;">₱${finalTotal.toFixed(2)}</span>`;
+                totalPriceElement.innerHTML = `<span style="text-decoration:line-through;">₱${totalFinalPrice.toFixed(2)}</span> <span style="color:green;">₱${finalTotal.toFixed(2)}</span>`;
                 // Show discount info
                 const discountInfo = document.createElement('p');
                 discountInfo.id = 'loyalty-discount-info';
-                discountInfo.innerHTML = `<strong style="color:green;">Loyalty Points Discount: -${discount.toFixed(2)}</strong>`;
+                discountInfo.innerHTML = `<strong style="color:green;">Loyalty Points Discount: -₱${discount.toFixed(2)}</strong>`;
                 totalPriceElement.parentNode.appendChild(discountInfo);
-
-                const discountedPrice = totalFinalPrice - discount;
-                discountedPrice.parentNode.appendChild(discountInfo);
+                loyaltyPointsElement.textContent = Math.ceil(finalTotal / 1000);
             } else {
                 totalPriceElement.textContent = totalFinalPrice.toFixed(2);
+                loyaltyPointsElement.textContent = Math.ceil(totalFinalPrice / 1000);
             }
-
-
-            totalPriceElement.textContent = totalFinalPrice.toFixed(2);
-            loyaltyPointsElement.textContent = Math.ceil(totalFinalPrice / 1000);
             placeOrderButton.disabled = false;
         }
 
@@ -230,7 +226,17 @@
         }
 
         function generateOrderNumber() {
-            return 'TRI-' + Date.now();
+            // Get the last order number from localStorage
+            let lastOrderNum = parseInt(localStorage.getItem('lastOrderNum')) || 0;
+            
+            // Increment the order number
+            lastOrderNum++;
+            
+            // Save the new order number
+            localStorage.setItem('lastOrderNum', lastOrderNum);
+            
+    
+            return 'TRI-' + lastOrderNum.toString().padStart(4, '0');
         }
 
         function handleCheckoutSubmit() {
@@ -266,6 +272,18 @@
                     return;
                 }
 
+                // Get the final price to display (use discounted price if loyalty discount was applied)
+                const loyaltyDiscountData = JSON.parse(localStorage.getItem('loyaltyDiscount'));
+                let finalTotalPrice;
+                let displayPrice;
+                if (loyaltyDiscountData) {
+                    finalTotalPrice = loyaltyDiscountData.finalTotal;
+                    displayPrice = '₱' + finalTotalPrice.toFixed(2) + ' (Discounted)';
+                } else {
+                    finalTotalPrice = totalPrice;
+                    displayPrice = '₱' + totalPrice;
+                }
+
                 const orderData = {
                     orderNumber: generateOrderNumber(),
                     customerName: fullName,
@@ -275,7 +293,7 @@
                     address: address,
                     notes: notes,
                     paymentMethod: paymentMethodInput.value,
-                    totalPrice: totalPrice,
+                    totalPrice: finalTotalPrice,
                     loyaltyPoints: loyaltyPoints,
                     items: cart,
                     orderDate: new Date().toLocaleString()
@@ -293,7 +311,7 @@
                     <p><strong>Phone:</strong> ${orderData.phone}</p>
                     <p><strong>Delivery Method:</strong> ${orderData.deliveryMethod}</p>
                     <p><strong>Payment Method:</strong> ${orderData.paymentMethod}</p>
-                    <p><strong>Total Paid:</strong> ₱${orderData.totalPrice}</p>
+                    <p><strong>Total Paid:</strong> ${displayPrice}</p>
                     <p>Your order has been saved in localStorage as <strong>lastOrder</strong>.</p>
                     <p><a href="catalogue.html">Shop Again</a></p>
                 `;
