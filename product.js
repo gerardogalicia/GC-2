@@ -15,11 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     document.title = window.productData.title;
     
-
-    // OH NO I FORGOT TO CHECK IF THE ELEMENTS EXIST BEFORE TRYING TO SET THEM.
-    // NO WONDER THE CODE STOPPED WORKING
-    // BY DELETING THE IMAGE ELEMENT WE BROKE THE ENTIRE PAGE.
-    // SINCE THE CODE IS RELIANT ON AN ELEMENT THAT DOESN'T EXIST ANYMORE.
     const titleElement = document.getElementById('product-title');
     if (titleElement) titleElement.textContent = window.productData.title;
     

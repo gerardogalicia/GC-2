@@ -4,17 +4,17 @@
 * {
   box-sizing: border-box;
 }
-/* Color Scheme (Consistency across site) */
+
 /* Color Scheme (Consistency across site) */
 :root {
-  --bg: #F1F5F9;        /* Page background (soft light gray) */
-  --card: #FFFFFF;      /* Cards / containers */
-  --surface: #E2E8F0;   /* Inputs / inner sections */
-  --text: #012640;      /* Main text (your navy) */
-  --muted: #64748B;     /* Secondary text */
-  --accent1: #07BCCA;   /* Primary accent */
-  --accent2: #0597A6;   /* Hover */
-  --divider: rgba(0,0,0,0.08); /* Subtle border */
+  --bg: #F1F5F9;        
+  --card: #FFFFFF;  
+  --surface: #E2E8F0;   
+  --text: #012640;    
+  --muted: #64748B;     
+  --accent1: #07BCCA;   
+  --accent2: #0597A6;   
+  --divider: rgba(0,0,0,0.08); 
 }
 
 /* Base Styles */
@@ -124,7 +124,7 @@ main {
 
 /* ORDER SUMMARY SECTION */
 .order-summary {
-  flex: 1 1 45%;  /* This takes 45% of the width */
+  flex: 1 1 45%;  
   background: var(--card);
   border-radius: 1rem;
   padding: 15px;
@@ -358,6 +358,41 @@ textarea {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Smaller shadow to simulate click effect */
 }
 
+/* FOOTER */
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: var(--surface);
+  padding: 30px;
+  font-family: 'Roboto', sans-serif;
+  width: 100%;
+  font-size: 16px;
+  margin-top: 3rem;
+  border-top: 1px solid var(--divider);
+}
+
+/* FOOTER TEXT */
+footer p {
+  color: var(--text);
+}
+
+/* FOOTER NAV */
+.nav-footer a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav-footer a:hover {
+  color: var(--accent1);
+}
+
+.nav-footer a.active {
+  color: var(--text);
+  font-weight: 700;
+}
+
 /* RESPONSIVENESS */
 @media (max-width: 768px) {
   main {
@@ -422,4 +457,31 @@ textarea {
 
 .aside-links a:hover {
   background: var(--accent2);
+}
+
+/* CONFIRMATION MESSAGE */
+#confirmation-message {
+  display: none; 
+  padding: 20px;
+  background-color: #f0f8ff; /* Light background for emphasis */
+  border-radius: 1rem;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+#confirmation-message.show {
+  display: block; /* Show the confirmation message */
+}
+
+/* Styling the confirmation message content */
+#confirmation-message h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--text);
+}
+
+#confirmation-message p {
+  font-size: 1rem;
+  color: var(--muted);
 }
